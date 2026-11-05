@@ -8,11 +8,12 @@ import javafx.scene.Scene;
 
 
 public class Main extends Application {
+	@SuppressWarnings("exports")
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/screen/InventoryScreen.fxml"));
-			Scene scene = new Scene(root,400,400);
+			Scene scene = new Scene(root,520,400);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" />
+<TableView fx:id="inventoryTable" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InventoryController">
+  <columns>
+    <TableColumn fx:id="colProductName" prefWidth="160.0" text="Egg Product" />
+    <TableColumn fx:id="colStock" prefWidth="110.0" text="Stock Quantity" />
+    <TableColumn fx:id="colPrice" prefWidth="110.0" text="Price (Php)" />
+    <TableColumn fx:id="colBatchId" prefWidth="140.0" text="Batch ID" />
+  </columns>
+</TableView>
