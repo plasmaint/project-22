@@ -1,7 +1,5 @@
-package management;
-
+package user;
 
 public class User {
-
 
 }

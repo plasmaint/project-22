@@ -1,4 +1,4 @@
-package management;
+package product;
 
 public class DuckEgg extends EggProduct {
 	
