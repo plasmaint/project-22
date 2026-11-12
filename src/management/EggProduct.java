@@ -2,22 +2,36 @@ package management;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.StringProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
-public class EggProduct {
+
+public abstract class EggProduct {
+	private final StringProperty batchId;
     private final StringProperty productName;
-    private final IntegerProperty stockQuantity;
+    private final IntegerProperty packSize;
     private final DoubleProperty price;
-    private final StringProperty batchId;
-
-    public EggProduct(String productName, int stockQuantity, double price, String batchId) {
+    
+    // Constructor
+    public EggProduct(String batchId, String productName, int packSize, double price) {
+    	this.batchId = new SimpleStringProperty(batchId);
         this.productName = new SimpleStringProperty(productName);
-        this.stockQuantity = new SimpleIntegerProperty(stockQuantity);
+        this.packSize = new SimpleIntegerProperty(packSize);
         this.price = new SimpleDoubleProperty(price);
-        this.batchId = new SimpleStringProperty(batchId);
+    }
+    
+    // Batch ID
+    public String getBatchId() {
+        return batchId.get();
+    }
+    public void setBatchId(String batchId) {
+        this.batchId.set(batchId);
+    }
+    @SuppressWarnings("exports")
+	public StringProperty batchIdProperty() {
+        return batchId;
     }
 
     // Product Name
@@ -31,17 +45,18 @@ public class EggProduct {
 	public StringProperty productNameProperty() {
         return productName;
     }
-
-    // Stock Quantity
-    public int getStockQuantity() {
-        return stockQuantity.get();
+    
+    // Pack Size
+    public int getPackSize() {
+        return packSize.get();
     }
-    public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity.set(stockQuantity);
+
+    public void setPackSize(int packSize) {
+        this.packSize.set(packSize);
     }
     @SuppressWarnings("exports")
-	public IntegerProperty stockQuantityProperty() {
-        return stockQuantity;
+    public IntegerProperty packSizeProperty() {
+        return packSize;
     }
 
     // Price
@@ -56,15 +71,6 @@ public class EggProduct {
         return price;
     }
 
-    // Batch ID
-    public String getBatchId() {
-        return batchId.get();
-    }
-    public void setBatchId(String batchId) {
-        this.batchId.set(batchId);
-    }
-    @SuppressWarnings("exports")
-	public StringProperty batchIdProperty() {
-        return batchId;
-    }
+    // Type
+    public abstract String getEggType();
 }
