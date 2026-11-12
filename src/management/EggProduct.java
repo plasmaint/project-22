@@ -9,16 +9,15 @@ import javafx.beans.property.SimpleStringProperty;
 
 
 public abstract class EggProduct {
+	// Attributes
 	private final StringProperty batchId;
     private final StringProperty productName;
-    private final IntegerProperty packSize;
     private final DoubleProperty price;
     
     // Constructor
-    public EggProduct(String batchId, String productName, int packSize, double price) {
+    public EggProduct(String batchId, String productName, double price) {
     	this.batchId = new SimpleStringProperty(batchId);
         this.productName = new SimpleStringProperty(productName);
-        this.packSize = new SimpleIntegerProperty(packSize);
         this.price = new SimpleDoubleProperty(price);
     }
     
@@ -45,19 +44,6 @@ public abstract class EggProduct {
 	public StringProperty productNameProperty() {
         return productName;
     }
-    
-    // Pack Size
-    public int getPackSize() {
-        return packSize.get();
-    }
-
-    public void setPackSize(int packSize) {
-        this.packSize.set(packSize);
-    }
-    @SuppressWarnings("exports")
-    public IntegerProperty packSizeProperty() {
-        return packSize;
-    }
 
     // Price
     public double getPrice() {
@@ -73,4 +59,7 @@ public abstract class EggProduct {
 
     // Type
     public abstract String getEggType();
+    
+    //Pack Size
+    public abstract int getPackSize();
 }
