@@ -20,7 +20,7 @@
    <top>
       <HBox alignment="CENTER_LEFT" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Cash &amp; Transaction Flow">
+            <Label text="Cash and Transaction">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -42,7 +42,7 @@
          <columns>
             <TableColumn fx:id="colTransactionId" prefWidth="120.0" text="Transaction ID" />
             <TableColumn fx:id="colType" prefWidth="110.0" text="Type" />
-            <TableColumn fx:id="colAmount" prefWidth="120.0" text="Amount (₱)" />
+            <TableColumn fx:id="colAmount" prefWidth="120.0" text="Amount (Php)" />
             <TableColumn fx:id="colRecordedBy" prefWidth="130.0" text="Recorded By" />
             <TableColumn fx:id="colDateTime" prefWidth="160.0" text="Date &amp; Time" />
             <TableColumn fx:id="colStatus" prefWidth="100.0" text="Status" />
@@ -59,15 +59,15 @@
             <HBox alignment="CENTER_LEFT" spacing="10.0">
                <children>
                   <ComboBox fx:id="flowTypeComboBox" prefWidth="160.0" promptText="Cash In / Out" />
-                  <TextField fx:id="amountField" prefWidth="140.0" promptText="Amount (₱)" />
+                  <TextField fx:id="amountField" prefWidth="140.0" promptText="Amount (Php)" />
                   <TextField fx:id="noteField" prefWidth="220.0" promptText="Notes" />
                   <Button fx:id="recordCashButton" onAction="#handleRecordCashFlow" text="Record Flow" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" spacing="10.0">
                <children>
-                  <Button fx:id="voidTransactionButton" onAction="#handleVoidTransaction" text="Void Selected Transaction" />
-                  <Button fx:id="backButton" onAction="#handleBack" text="Back to Dashboard" />
+                  <Button fx:id="voidTransactionButton" onAction="#handleVoidTransaction" style="-fx-background-color: F0735D;" text="Void Selected Transaction" textFill="WHITE" />
+                  <Button fx:id="backButton" onAction="#handleBack" style="-fx-background-color: F0CD5D;" text="Back to Dashboard" textFill="WHITE" />
                   <Label fx:id="statusMessageLabel" text="" />
                </children>
             </HBox>
