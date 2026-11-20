@@ -5,8 +5,10 @@ module CMSC22_PROJECT_GGEZ {
 
     opens controller to javafx.fxml;
     opens management to javafx.base, javafx.fxml;
+    opens transaction to javafx.base;
     
     exports main;
     exports controller;
     exports management;
+    exports transaction;
 }
