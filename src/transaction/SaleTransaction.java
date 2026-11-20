@@ -2,6 +2,8 @@ package transaction;
 
 import java.util.ArrayList;
 import product.EggProduct;
+import management.Inventory;
+import management.InventoryItem;
 
 public class SaleTransaction extends Transaction {
 	// Attributes
@@ -46,6 +48,17 @@ public class SaleTransaction extends Transaction {
 			total = total + item.getPriceTotal();
 		}
 		return total;
+	}
+	
+	@Override
+	public void undoTransaction(Inventory inventory, Wallet wallet) {
+		wallet.cashOut(getAmount());
+		for (SaleItem item : items) {
+			InventoryItem stock = inventory.findByProductId(item.getProduct().getProductId());
+			if (stock != null) {
+				stock.addStock(item.getQuantity());
+			}
+		}
 	}
 
 }

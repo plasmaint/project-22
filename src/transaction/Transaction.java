@@ -2,6 +2,7 @@ package transaction;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import management.Inventory;
 
 public abstract class Transaction {
 	// Attributes
@@ -66,5 +67,7 @@ public abstract class Transaction {
 	public abstract String getType();
 
 	public abstract double getAmount();
+	
+	public abstract void undoTransaction(Inventory inventory, Wallet wallet);
 
 }
