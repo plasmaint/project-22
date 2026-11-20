@@ -14,10 +14,10 @@ public abstract class Transaction {
 	// Constructor
 	public Transaction(String transactionId, String recordedBy) {
 		if (transactionId == null || transactionId.trim().equals("")) {
-			throw new IllegalArgumentException("Transaction ID cannot be empty.");
+			throw new IllegalArgumentException("Transaction ID can not be empty.");
 		}
 		if (recordedBy == null || recordedBy.trim().equals("")) {
-			throw new IllegalArgumentException("Recorded by cannot be empty.");
+			throw new IllegalArgumentException("Recorded by can not be empty.");
 		}
 		this.transactionId = transactionId.trim();
 		this.recordedBy = recordedBy.trim();
