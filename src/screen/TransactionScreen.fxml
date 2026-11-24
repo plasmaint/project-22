@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="520.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TransactionController">
+   <padding>
+      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+   </padding>
+
+   <top>
+      <HBox alignment="CENTER_LEFT" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Cash and Transaction">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="walletBalanceLabel" text="Wallet Balance: ₱0.00">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="12.0" />
+         </padding>
+      </HBox>
+   </top>
+
+   <center>
+      <TableView fx:id="transactionTable" prefHeight="320.0" prefWidth="740.0" BorderPane.alignment="CENTER">
+         <columns>
+            <TableColumn fx:id="colTransactionId" prefWidth="120.0" text="Transaction ID" />
+            <TableColumn fx:id="colType" prefWidth="110.0" text="Type" />
+            <TableColumn fx:id="colAmount" prefWidth="120.0" text="Amount (Php)" />
+            <TableColumn fx:id="colRecordedBy" prefWidth="130.0" text="Recorded By" />
+            <TableColumn fx:id="colDateTime" prefWidth="160.0" text="Date &amp; Time" />
+            <TableColumn fx:id="colStatus" prefWidth="100.0" text="Status" />
+         </columns>
+      </TableView>
+   </center>
+
+   <bottom>
+      <VBox spacing="10.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets top="12.0" />
+         </padding>
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <ComboBox fx:id="flowTypeComboBox" prefWidth="160.0" promptText="Cash In / Out" />
+                  <TextField fx:id="amountField" prefWidth="140.0" promptText="Amount (Php)" />
+                  <TextField fx:id="noteField" prefWidth="220.0" promptText="Notes" />
+                  <Button fx:id="recordCashButton" onAction="#handleRecordCashFlow" text="Record Flow" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <Button fx:id="voidTransactionButton" onAction="#handleVoidTransaction" style="-fx-background-color: F0735D;" text="Void Selected Transaction" textFill="WHITE" />
+                  <Button fx:id="backButton" onAction="#handleBack" style="-fx-background-color: F0CD5D;" text="Back to Dashboard" textFill="WHITE" />
+                  <Label fx:id="statusMessageLabel" text="" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>
