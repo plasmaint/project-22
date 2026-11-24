@@ -1,6 +1,7 @@
 package main;
-	
+
 import controller.InventoryController;
+import controller.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -19,15 +20,15 @@ public class Main extends Application {
 			ProductList productList = new ProductList();
 			Inventory inventory = new Inventory(productList);
 			
-			// Load screen
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/screen/InventoryScreen.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/screen/LoginScreen.fxml"));
 			Parent root = loader.load();
-			InventoryController controller = loader.getController();
-			controller.setInventory(inventory);
+			LoginController loginController = loader.getController();
+			// controller.setInventory(inventory);	// Temporarily disabled.
+													// Set inventory after login instead?
 			
-			Scene scene = new Scene(root,520,400);
+			Scene scene = new Scene(root,1076,800);
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Egg Inventory");
+			primaryStage.setTitle("Golden Goose Eggz Management System");
 			primaryStage.show();
 		} catch(Exception e) {
 			e.getMessage();
