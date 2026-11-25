@@ -5,6 +5,9 @@ import java.util.Map;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
 
@@ -85,11 +88,33 @@ public class DashboardController {
     private void displayStats(VBox container, Map<String, String> stats) {
         container.getChildren().clear();
 
-        for (Map.Entry<String, String> entry : stats.entrySet()) {
-            Label label = new Label(entry.getKey() + ": " + entry.getValue());
-
-            container.getChildren().add(label);
+        for (Map.Entry<String, String> entry : stats.entrySet()) {	
+            HBox statRow = createStatRow(entry.getKey(), entry.getValue());
+            container.getChildren().add(statRow);
         }
+    }
+    
+    private HBox createStatRow(String labelText, String valueText) {
+        Label title = new Label(labelText);
+        title.setStyle("-fx-text-fill: #7A6248; -fx-font-size: 12.5px; -fx-font-weight: bold;");
+
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+
+        Label value = new Label(valueText);
+        value.setStyle("-fx-text-fill: #3E2714; -fx-font-size: 14px; -fx-font-weight: bold;");
+
+        HBox row = new HBox(10.0, title, spacer, value);
+        row.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+        row.setStyle(
+            "-fx-background-color: #FAF7EC;" +
+            "-fx-background-radius: 10;" +
+            "-fx-border-color: #E7DEC4;" +
+            "-fx-border-radius: 10;" +
+            "-fx-padding: 10 14 10 14;"
+        );
+        
+        return row;
     }
 }
 
