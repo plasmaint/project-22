@@ -19,7 +19,7 @@
          <padding>
             <Insets bottom="14.0" left="22.0" right="22.0" top="14.0" />
          </padding>
-         <ImageView fitHeight="53.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+         <ImageView fitHeight="50.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../../img/ggez_logo.png" />
             </image>
@@ -37,9 +37,11 @@
             </font>
          </Label>
 
-         <Region HBox.hgrow="ALWAYS" />
+         <Region prefHeight="48.0" prefWidth="332.0" HBox.hgrow="ALWAYS" />
 
-         <HBox alignment="CENTER" prefHeight="48.0" prefWidth="163.0" spacing="8.0" style="-fx-background-color: #FAF7EC; -fx-background-radius: 8; -fx-border-color: #E7DEC4; -fx-border-radius: 8; -fx-padding: 6 12 6 12;">
+<Region HBox.hgrow="ALWAYS" />
+
+         <HBox alignment="CENTER" spacing="8.0" style="-fx-background-color: #FAF7EC; -fx-background-radius: 8; -fx-border-color: #E7DEC4; -fx-border-radius: 8; -fx-padding: 6 12 6 12;">
             <Label text="SIGNED IN AS:" textFill="#7A6248">
                <font>
                   <Font name="System Bold" size="10.0" />
