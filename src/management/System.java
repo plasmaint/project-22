@@ -57,4 +57,16 @@ public class System {
 		public TransactionHandler getTransactionHandler() {
 			return transactionHandler;
 		}
+		
+		// Filter out the user
+		public ArrayList<Clerk> getClerks() {
+		    ArrayList<Clerk> clerks = new ArrayList<>();
+
+		    for (User user : users) {
+		        if (user instanceof Clerk) {
+		            clerks.add((Clerk) user);
+		        }
+		    }
+		    return clerks;
+		}
 }
