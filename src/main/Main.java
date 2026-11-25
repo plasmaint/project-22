@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import management.System;
 
 
@@ -23,6 +24,11 @@ public class Main extends Application {
 			loginController.setSystem(system);
 			
 			Scene scene = new Scene(root, 1076, 800);
+			
+	        // App icon
+			Image appIcon = new Image("file:img/ggez_logo.png");
+	        primaryStage.getIcons().add(appIcon);
+	        
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Golden Goose Eggz Management System");
 			primaryStage.show();
