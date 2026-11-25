@@ -16,7 +16,6 @@ public class SaleTransaction extends Transaction {
 
 
 	// Adds product, if already in, only quantity is increased.
-	@SuppressWarnings("exports")
 	public void addItem(EggProduct product, int quantity) {
 		if (product == null) {
 			throw new IllegalArgumentException("Product can not be empty.");

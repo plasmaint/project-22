@@ -46,7 +46,8 @@ public abstract class EggProduct {
         return productId.get();
     }
     
-    public StringProperty productIdProperty() {
+    @SuppressWarnings("exports")
+	public StringProperty productIdProperty() {
     	return productId;
     }
 
@@ -62,6 +63,7 @@ public abstract class EggProduct {
         this.productName.set(productName.trim());
     }
     
+	@SuppressWarnings("exports")
 	public StringProperty productNameProperty() {
         return productName;
     }
@@ -78,6 +80,7 @@ public abstract class EggProduct {
 		this.description.set(description.trim());
 	}
 
+	@SuppressWarnings("exports")
 	public StringProperty descriptionProperty() {
 		return description;
 	}
@@ -93,6 +96,7 @@ public abstract class EggProduct {
         this.price.set(price);
     }
     
+	@SuppressWarnings("exports")
 	public DoubleProperty priceProperty() {
         return price;
     }
@@ -109,6 +113,7 @@ public abstract class EggProduct {
 		this.packSize.set(packSize);
 	}
 	
+	@SuppressWarnings("exports")
 	public IntegerProperty packSizeProperty() {
 		return packSize;
 	}

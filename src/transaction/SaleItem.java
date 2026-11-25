@@ -9,7 +9,6 @@ public class SaleItem {
 	private double unitPrice;
 	
 	// Constructor
-	@SuppressWarnings("exports")
 	public SaleItem(EggProduct product, int quantity) {
 		if (product == null) {
 			throw new IllegalArgumentException("Product can not be empty.");
@@ -38,7 +37,6 @@ public class SaleItem {
 		return product.toString();
 	}
 	
-	@SuppressWarnings("exports")
 	public EggProduct getProduct() {
 		return product;
 	}

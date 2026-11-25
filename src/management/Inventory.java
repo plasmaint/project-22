@@ -8,7 +8,6 @@ import product.ProductList;
 public class Inventory {
 	private ObservableList<InventoryItem> items = FXCollections.observableArrayList();
 	
-	@SuppressWarnings("exports")
 	public Inventory(ProductList products) {
 		for (EggProduct product : products.getProducts()) {
 			items.add(new InventoryItem(product, 20));
@@ -38,7 +37,6 @@ public class Inventory {
 	}
 	
 	// Add new product
-	@SuppressWarnings("exports")
 	public void addNewProduct(EggProduct product, int stock) {
 		if (findByProductId(product.getProductId()) != null) {
 			throw new IllegalArgumentException("Product already in the inventory");

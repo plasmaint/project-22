@@ -4,7 +4,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import product.EggProduct;
 
 public class InventoryItem {
@@ -13,7 +12,6 @@ public class InventoryItem {
 	private IntegerProperty stockQuantity;
 	
 	// Constructor
-	@SuppressWarnings("exports")
 	public InventoryItem(EggProduct product, int stockQuantity) {
 		if (product == null) {
 			throw new IllegalArgumentException("Product can not be empty.");
@@ -54,7 +52,6 @@ public class InventoryItem {
 	}
 	
 	// Product
-	@SuppressWarnings("exports")
 	public EggProduct getProduct() {
 		return product;
 	}
