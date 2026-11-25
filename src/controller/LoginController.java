@@ -47,7 +47,7 @@ public class LoginController {
             return;
         }
         // Validate password.
-        if (password.isBlank() || username.equals("")) {
+        if (password.isBlank() || password.equals("")) {
         	errorLabel.setText("Please enter your password.");
         	return;
         }
