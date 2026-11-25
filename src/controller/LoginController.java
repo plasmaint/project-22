@@ -1,11 +1,17 @@
 package controller;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class LoginController {
 
@@ -55,5 +61,27 @@ public class LoginController {
         
         // TODO: Authenticate credentials, identify user, and determine permissions.
         // TODO: Login user and switch screen to MainLayout.
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/screen/MainLayout.fxml")
+            );
+
+            Parent root = loader.load();
+
+            // Retrieve the MainController.
+            MainController controller = loader.getController();
+
+            // TODO: Pass the authenticated User to MainController.
+
+            // Replace the current screen.
+            Stage stage = (Stage) usernameField.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.centerOnScreen();
+
+        } catch (IOException e) {
+            errorLabel.setText("Unable to load the main screen.");
+            e.printStackTrace();
+        }
     }
 }
