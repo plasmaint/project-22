@@ -1,14 +1,12 @@
 package main;
 
-import controller.InventoryController;
 import controller.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import management.Inventory;
-import product.ProductList;
+import management.System;
 
 
 public class Main extends Application {
@@ -17,21 +15,19 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			// Shared data
-			ProductList productList = new ProductList();
-			Inventory inventory = new Inventory(productList);
+			System system = new System();
 			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/screen/LoginScreen.fxml"));
 			Parent root = loader.load();
 			LoginController loginController = loader.getController();
-			// controller.setInventory(inventory);	// Temporarily disabled.
-													// Set inventory after login instead?
+			loginController.setSystem(system);
 			
-			Scene scene = new Scene(root,1076,800);
+			Scene scene = new Scene(root, 1076, 800);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Golden Goose Eggz Management System");
 			primaryStage.show();
 		} catch(Exception e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 	}
 	
