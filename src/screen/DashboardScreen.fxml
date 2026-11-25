@@ -1,46 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
+<BorderPane style="-fx-background-color: #FAF7EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
+   <center>
+      <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: #FAF7EC;">
+         <content>
+            <VBox spacing="18.0" style="-fx-background-color: #FAF7EC;">
+               <padding>
+                  <Insets bottom="24.0" left="24.0" right="24.0" top="20.0" />
+               </padding>
 
-    <center>
-        <VBox spacing="15" style="-fx-padding: 20;">
+               <!-- Page Header -->
+               <VBox spacing="4.0" style="-fx-background-color: #FFFDF7; -fx-background-radius: 14; -fx-border-color: #E7DEC4; -fx-border-radius: 14; -fx-border-width: 1.5; -fx-effect: dropshadow(gaussian, rgba(74, 52, 27, 0.06), 12, 0, 0, 4);">
+                  <padding>
+                     <Insets bottom="16.0" left="22.0" right="22.0" top="16.0" />
+                  </padding>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <Label style="-fx-background-color: #ffcd14; -fx-background-radius: 999; -fx-padding: 3 10 3 10;" text="OVERVIEW" textFill="#2F1D0E">
+                        <font>
+                           <Font name="System Bold" size="10.5" />
+                        </font>
+                     </Label>
+                     <Label fx:id="titleLabel" text="DASHBOARD" textFill="#4A341B">
+                        <font>
+                           <Font name="System Bold" size="28.0" />
+                        </font>
+                     </Label>
+                  </HBox>
+                  <Label fx:id="subtitleLabel" text="Dashboard Overview" textFill="#7A6248">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </VBox>
 
-            <VBox spacing="5">
-                <Label fx:id="titleLabel"
-                       text="Dashboard"
-                       style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+               <!-- General Statistics Card -->
+               <VBox spacing="12.0" style="-fx-background-color: #FFFDF7; -fx-background-radius: 14; -fx-border-color: #E7DEC4; -fx-border-radius: 14; -fx-border-width: 1.5; -fx-effect: dropshadow(gaussian, rgba(74, 52, 27, 0.06), 12, 0, 0, 4);">
+                  <padding>
+                     <Insets bottom="18.0" left="22.0" right="22.0" top="18.0" />
+                  </padding>
+                  <Label text="Statistics" textFill="#3E2714">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Separator style="-fx-opacity: 0.55;" />
+                  <VBox fx:id="statsContainer" spacing="8.0" />
+               </VBox>
 
-                <Label fx:id="subtitleLabel"
-                       text="Dashboard Overview"/>
+               <!-- Clerk Breakdown Section -->
+               <VBox fx:id="clerkSection" spacing="12.0" style="-fx-background-color: #FFFDF7; -fx-background-radius: 14; -fx-border-color: #E7DEC4; -fx-border-radius: 14; -fx-border-width: 1.5; -fx-effect: dropshadow(gaussian, rgba(74, 52, 27, 0.06), 12, 0, 0, 4);">
+                  <padding>
+                     <Insets bottom="18.0" left="22.0" right="22.0" top="18.0" />
+                  </padding>
+                  <HBox alignment="CENTER_LEFT" spacing="12.0">
+                     <Label text="Clerk Dashboard" textFill="#3E2714">
+                        <font>
+                           <Font name="System Bold" size="16.0" />
+                        </font>
+                     </Label>
+                     <ComboBox fx:id="clerkSelector" prefHeight="34.0" prefWidth="220.0" promptText="Select a clerk" style="-fx-background-color: #FAF7EC; -fx-background-radius: 8; -fx-border-color: #DDD0AE; -fx-border-radius: 8;" />
+                  </HBox>
+                  <Separator style="-fx-opacity: 0.55;" />
+                  <VBox fx:id="clerkStatsContainer" spacing="8.0" />
+               </VBox>
+
             </VBox>
-
-            <VBox spacing="10">
-                <Label text="Statistics"
-                       style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
-
-                <VBox fx:id="statsContainer" spacing="8"/>
-            </VBox>
-
-            <VBox fx:id="clerkSection" spacing="10">
-
-                <Label text="Clerk Dashboard"
-                       style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
-
-                <ComboBox fx:id="clerkSelector"
-                          promptText="Select a clerk"
-                          prefWidth="200"/>
-
-                <VBox fx:id="clerkStatsContainer" spacing="8"/>
-
-            </VBox>
-
-        </VBox>
-    </center>
-
+         </content>
+      </ScrollPane>
+   </center>
 </BorderPane>
