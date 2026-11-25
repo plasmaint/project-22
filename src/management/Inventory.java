@@ -44,8 +44,8 @@ public class Inventory {
 		items.add(new InventoryItem(product, stock));
 	}
 	
-	// Add packs to an existing product's stock
-	public void addStock(String productId, int amount) {
+	// Add packs to an existing product
+	public void restock(String productId, int amount) {
 		InventoryItem item = findByProductId(productId);
 		if (item == null) {
 			throw new IllegalArgumentException("Product " + productId + " not found.");
@@ -53,8 +53,8 @@ public class Inventory {
 		item.addStock(amount);
 	}
  
-	// Take packs out of an existing product's stock
-	public void deductStock(String productId, int amount) {
+	// Take packs out of stock
+	public void removeStock(String productId, int amount) {
 		InventoryItem item = findByProductId(productId);
 		if (item == null) {
 			throw new IllegalArgumentException("Product " + productId + " not found.");
@@ -62,13 +62,6 @@ public class Inventory {
 		item.deductStock(amount);
 	}
 	
-	// Clear all packs from an existing product's stock
-	public void clearStock(String productId) {
-		InventoryItem item = findByProductId(productId);
-		if (item == null) {
-			throw new IllegalArgumentException("Product " + productId + " not found.");
-		}
-		item.deductStock(item.getStockQuantity());
-	}
+	
 	
 }
