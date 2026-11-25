@@ -4,12 +4,12 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
-
+import javafx.stage.Stage;
 import management.System;
 import user.User;
 
@@ -20,9 +20,8 @@ public class MainController {
 	@FXML private Button dashboardButton;
     @FXML private Button inventoryButton;
     @FXML private Button productsButton;
-    @FXML private Button salesButton;
     @FXML private Button transactionsButton;
-    @FXML private Button clerkHistoryButton;
+    @FXML private Button clerkSalesButton;
 
     @FXML private StackPane mainContent;
 
@@ -37,7 +36,7 @@ public class MainController {
     	
     	if (!user.isManager()) {
     		hide(productsButton);
-    		hide(clerkHistoryButton);
+    		hide(clerkSalesButton);
     	}
     	
     	openInventory();
@@ -53,8 +52,10 @@ public class MainController {
     @FXML
     void handleLogout() {
     	try {
+    		// Clear the logged-in user
 			system.logout();
 
+        	// Retrieve login screen and give it the system again.
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("/screen/LoginScreen.fxml"));
 			Parent root = loader.load();
@@ -62,73 +63,60 @@ public class MainController {
 			LoginController loginController = loader.getController();
 			loginController.setSystem(system);
 
-			roleLabel.getScene().setRoot(root);
+			// Get dimensions of current screen.
+            Stage stage = (Stage) roleLabel.getScene().getWindow();
+            double width = stage.getWidth();
+            double height = stage.getHeight();
+            
+            // Load login screen using current screen dimensions.
+            Scene scene = new Scene(root, width, height);
+            stage.setScene(scene);
+            stage.centerOnScreen();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
     }
-
-    // Switches main content area to dashboard overview.
-    @FXML
-    void openDashboard() {
     	
+    // Helper function. Handles the loading of the screens.
+    private void loadContent(String screenFile) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/screen/" + screenFile));
+            Parent root = loader.load();
+            
+            Object childController = loader.getController();
+            
+            if (childController instanceof InventoryController) {
+            	InventoryController inventoryController = (InventoryController) childController;
+            	inventoryController.setInventory(system.getInventory());
+            	inventoryController.setRestockAllowed(system.getCurrentUser().isManager()); // only the Manager can restock
+            } else if (childController instanceof ProductController) {
+            	// TODO: set/load products
+            }
+            
+            // Replace main content area with respective screen.
+            mainContent.getChildren().setAll(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
-    // Switches main content area to inventory management.
-    @FXML
-    void openInventory() {
-    	try {
-			FXMLLoader loader = new FXMLLoader(
-					getClass().getResource("/screen/InventoryScreen.fxml"));
-			Parent screen = loader.load();
-
-			InventoryController inventoryController = loader.getController();
-			inventoryController.setInventory(system.getInventory());
-			inventoryController.setRestockAllowed(system.getCurrentUser().isManager()); // only the Manager can restock
-
-			mainContent.getChildren().setAll(screen);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    }
+    // Switches main content area to respective content screens.
+    @FXML void openDashboard() { loadContent("DashboardScreen.fxml");    }
+    @FXML void openInventory() { loadContent("InventoryScreen.fxml");    }    
+    @FXML void openTransactions() { loadContent("TransactionScreen.fxml");  }
     
-    // Switches main content area to product management.
-    @FXML
-    void openProducts() {
+    // Manager only screens
+    @FXML void openProducts() { 
     	if (!system.getCurrentUser().isManager()) {
     		return;
     	}
-    	// TODO
+    	loadContent("ProductScreen.fxml");
     }
-
-    // Switches main content area to sales processing.
-    @FXML
-    void openSales() {
-    	// TODO
-    }
-
-    // Switches main content area to cash flow and transaction history.
-    @FXML
-    void openTransactions() {
-    	try {
-			FXMLLoader loader = new FXMLLoader(
-					getClass().getResource("/screen/TransactionScreen.fxml"));
-			Parent screen = loader.load();
-
-			TransactionController transactionController = loader.getController();
-
-			//mainContent.getChildren().setAll(screen);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    }
-
-    // Switches main content area to clerk sales history.
-    @FXML
-    void openClerkHistory() {
+    @FXML void openClerkSales() { 
     	if (!system.getCurrentUser().isManager()) {
-			return;
-		}
-    	// TODO
+    		return;
+    	}
+    	loadContent("ClerkSalesScreen.fxml");
     }
 }
+    
