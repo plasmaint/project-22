@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -11,18 +13,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="680.0" prefWidth="1060.0" style="-fx-background-color: #FAF7EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<BorderPane prefHeight="680.0" prefWidth="1060.0" style="-fx-background-color: #FAF7EC;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <top>
       <HBox alignment="CENTER_LEFT" spacing="12.0" style="-fx-background-color: #FFFDF7; -fx-border-color: #E7DEC4; -fx-border-width: 0 0 1.5 0;" styleClass="topbar">
          <padding>
             <Insets bottom="14.0" left="22.0" right="22.0" top="14.0" />
          </padding>
-
-         <Label style="-fx-background-color: #ffcd14; -fx-background-radius: 999; -fx-padding: 3 9 3 9;" text="GGEZ" textFill="#3e2714">
-            <font>
-               <Font name="System Bold" size="11.5" />
-            </font>
-         </Label>
+         <ImageView fitHeight="53.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../../img/ggez_logo.png" />
+            </image>
+         </ImageView>
 
          <Label text="Golden Goose EggZ" textFill="#4A341B">
             <font>
@@ -38,7 +39,7 @@
 
          <Region HBox.hgrow="ALWAYS" />
 
-         <HBox alignment="CENTER" spacing="8.0" style="-fx-background-color: #FAF7EC; -fx-background-radius: 8; -fx-border-color: #E7DEC4; -fx-border-radius: 8; -fx-padding: 6 12 6 12;">
+         <HBox alignment="CENTER" prefHeight="48.0" prefWidth="163.0" spacing="8.0" style="-fx-background-color: #FAF7EC; -fx-background-radius: 8; -fx-border-color: #E7DEC4; -fx-border-radius: 8; -fx-padding: 6 12 6 12;">
             <Label text="SIGNED IN AS:" textFill="#7A6248">
                <font>
                   <Font name="System Bold" size="10.0" />
