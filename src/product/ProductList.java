@@ -1,9 +1,10 @@
 package product;
 
-import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class ProductList {
-	private ArrayList<EggProduct> products = new ArrayList<>();
+	private ObservableList<EggProduct> products = FXCollections.observableArrayList();
 	
 	public ProductList() {
 		// Chicken
@@ -30,7 +31,7 @@ public class ProductList {
 		products.add(new GooseEgg("P-15", "Salted", "Brined eggs", 465, 6));
 	}
 	
-	public ArrayList<EggProduct> getProducts() {
+	public ObservableList<EggProduct> getProducts() {
 		return products;
 	}
 	
