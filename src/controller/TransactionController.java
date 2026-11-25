@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -26,14 +25,8 @@ public class TransactionController {
     @FXML private Button recordCashButton;
 
     @FXML private Button voidTransactionButton;
-    @FXML private Button backButton;
     @FXML private Label statusMessageLabel;
-
-    @FXML 
-    public void handleBack() {
-    	// Might not be needed since transaction screen will replace content area, not switch screen.
-    }
-
+    
     @FXML
     public void handleRecordCashFlow() {
     	// TODO: Implement
@@ -41,7 +34,11 @@ public class TransactionController {
 
     @FXML
     public void handleVoidTransaction() {
-    	// TODO: Implement
+    	// TODO: Display confirmation prompt:
+    		// "Are you sure you wish to void this transaction?"
+    		// Transaction ID | Type | Amount | Recorded By | Date & Time | Status
+    		// "Enter 'void transaction' to confirm" - "Confirm" button
+    	// TODO: Remove transaction
     }
 
 }
