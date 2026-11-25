@@ -9,7 +9,6 @@ import user.Clerk;
 
 public class ManagerDashboard extends Dashboard {
 
-
 	//Constructor
 	public ManagerDashboard(System system) {
 		super(system);

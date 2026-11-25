@@ -38,35 +38,35 @@ public class System {
 	}
 	
 	// Getters
-		public User getCurrentUser() {
-			return currentUser;
-		}
+	public User getCurrentUser() {
+		return currentUser;
+	}
 
-		public ArrayList<User> getUsers() {
-			return users;
-		}
+	public ArrayList<User> getUsers() {
+		return users;
+	}
 
-		public ProductList getProductList() {
-			return productList;
-		}
+	public ProductList getProductList() {
+		return productList;
+	}
 
-		public Inventory getInventory() {
-			return inventory;
-		}
+	public Inventory getInventory() {
+		return inventory;
+	}
 
-		public TransactionHandler getTransactionHandler() {
-			return transactionHandler;
-		}
-		
-		// Filter out the user
-		public ArrayList<Clerk> getClerks() {
-		    ArrayList<Clerk> clerks = new ArrayList<>();
+	public TransactionHandler getTransactionHandler() {
+		return transactionHandler;
+	}
+	
+	// Filter out the user
+	public ArrayList<Clerk> getClerks() {
+	    ArrayList<Clerk> clerks = new ArrayList<>();
 
-		    for (User user : users) {
-		        if (user instanceof Clerk) {
-		            clerks.add((Clerk) user);
-		        }
-		    }
-		    return clerks;
-		}
+	    for (User user : users) {
+	        if (user instanceof Clerk) {
+	            clerks.add((Clerk) user);
+	        }
+	    }
+	    return clerks;
+	}
 }
