@@ -3,8 +3,8 @@ package product;
 public class ChickenEgg extends EggProduct {
 
 	//Constructor
-	public ChickenEgg(String batchId, String productName, double price, int packSize) {
-		super(batchId, productName, price, packSize);
+	public ChickenEgg(String batchId, String productName, String description, double price, int packSize) {
+		super(batchId, productName, description, price, packSize);
 	}
 
 	@Override

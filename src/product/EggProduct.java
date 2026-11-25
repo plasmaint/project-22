@@ -12,17 +12,21 @@ public abstract class EggProduct {
 	// Attributes
 	private StringProperty productId;
     private StringProperty productName;
+    private StringProperty description;
     private DoubleProperty price;
     private IntegerProperty packSize;
     
     // Constructor
-    public EggProduct(String productId, String productName, double price, int packSize) {
+    public EggProduct(String productId, String productName, String description, double price, int packSize) {
     	if (productId == null || productId.trim().equals("")) {
             throw new IllegalArgumentException("Product ID can not be empty.");
         }
         if (productName == null || productName.trim().equals("")) {
             throw new IllegalArgumentException("Product name can not be empty.");
         }
+        if (description == null || description.trim().equals("")) {
+			throw new IllegalArgumentException("Description can not be empty.");
+		}
         if (price < 0) {
             throw new IllegalArgumentException("Price can not be negative.");
         }
@@ -30,8 +34,9 @@ public abstract class EggProduct {
             throw new IllegalArgumentException("Pack size must be more than 0.");
         }
         
-    	this.productId = new SimpleStringProperty(productId);
-        this.productName = new SimpleStringProperty(productName);
+    	this.productId = new SimpleStringProperty(productId.trim());
+        this.productName = new SimpleStringProperty(productName.trim());
+        this.description = new SimpleStringProperty(description.trim());
         this.price = new SimpleDoubleProperty(price);
         this.packSize = new SimpleIntegerProperty(packSize);
     }
@@ -60,6 +65,22 @@ public abstract class EggProduct {
 	public StringProperty productNameProperty() {
         return productName;
     }
+	
+	// Description
+	public String getDescription() {
+		return description.get();
+	}
+
+	public void setDescription(String description) {
+		if (description == null || description.trim().equals("")) {
+			throw new IllegalArgumentException("Description can not be empty.");
+		}
+		this.description.set(description.trim());
+	}
+
+	public StringProperty descriptionProperty() {
+		return description;
+	}
 
     // Price
     public double getPrice() {
