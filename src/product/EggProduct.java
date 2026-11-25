@@ -42,19 +42,14 @@ public abstract class EggProduct {
     }
     
     // Product ID
-    public String getProductId() {
-        return productId.get();
-    }
+    public String getProductId() { return productId.get(); }
     
     @SuppressWarnings("exports")
-	public StringProperty productIdProperty() {
-    	return productId;
-    }
+	public StringProperty productIdProperty() { return productId; }
 
+    
     // Product Name
-    public String getProductName() {
-        return productName.get();
-    }
+    public String getProductName() { return productName.get(); }
     
     public void setProductName(String productName) {
     	if (productName == null || productName.trim().equals("")) {
@@ -64,14 +59,11 @@ public abstract class EggProduct {
     }
     
 	@SuppressWarnings("exports")
-	public StringProperty productNameProperty() {
-        return productName;
-    }
+	public StringProperty productNameProperty() { return productName; }
+	
 	
 	// Description
-	public String getDescription() {
-		return description.get();
-	}
+	public String getDescription() { return description.get(); }
 
 	public void setDescription(String description) {
 		if (description == null || description.trim().equals("")) {
@@ -81,14 +73,11 @@ public abstract class EggProduct {
 	}
 
 	@SuppressWarnings("exports")
-	public StringProperty descriptionProperty() {
-		return description;
-	}
+	public StringProperty descriptionProperty() { return description; }
 
+	
     // Price
-    public double getPrice() {
-        return price.get();
-    }
+    public double getPrice() { return price.get(); }
     public void setPrice(double price) {
     	if (price < 0) {
     		throw new IllegalArgumentException("Price can not be negative.");
@@ -97,14 +86,11 @@ public abstract class EggProduct {
     }
     
 	@SuppressWarnings("exports")
-	public DoubleProperty priceProperty() {
-        return price;
-    }
+	public DoubleProperty priceProperty() { return price; }
 	
-	//Pack Size
-	public int getPackSize() {
-		return packSize.get();
-	}
+	
+	// Pack Size
+	public int getPackSize() { return packSize.get(); }
 	
 	public void setPackSize(int packSize) {
 		if (packSize <= 0) {
@@ -114,14 +100,12 @@ public abstract class EggProduct {
 	}
 	
 	@SuppressWarnings("exports")
-	public IntegerProperty packSizeProperty() {
-		return packSize;
-	}
+	public IntegerProperty packSizeProperty() { return packSize; }
 
-    // Type
+    // EggType
     public abstract String getEggType();
     
-    //Egg type with variant
+    // Egg type with variant
     @Override
     public String toString() {
     	return getEggType() + " (" + getProductName() + ")";

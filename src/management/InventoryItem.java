@@ -52,52 +52,37 @@ public class InventoryItem {
 	}
 	
 	// Product
-	public EggProduct getProduct() {
-		return product;
-	}
+	public EggProduct getProduct() { return product; }
  
+	
 	// Stock Quantity
-	public int getStockQuantity() {
-		return stockQuantity.get();
-	}
- 
+	public int getStockQuantity() { return stockQuantity.get(); }
+	
 	@SuppressWarnings("exports")
-	public IntegerProperty stockQuantityProperty() {
-		return stockQuantity;
-	}
+	public IntegerProperty stockQuantityProperty() { return stockQuantity; }
+	
 	
 	// Egg Type
-	public String getEggType() {
-		return product.getEggType();
-	}
+	public String getEggType() { return product.getEggType(); }
+	
 	
 	// Product Name
-	public String getProductName() {
-		return product.getProductName();
-	}
+	public String getProductName() { return product.getProductName(); }
  
 	@SuppressWarnings("exports")
-	public StringProperty productNameProperty() {
-		return product.productNameProperty();
-	}
+	public StringProperty productNameProperty() { return product.productNameProperty(); }
+	
 	
 	// Price
-	public double getPrice() {
-		return product.getPrice();
-	}
+	public double getPrice() { return product.getPrice(); }
  
 	@SuppressWarnings("exports")
-	public DoubleProperty priceProperty() {
-		return product.priceProperty();
-	}
+	public DoubleProperty priceProperty() { return product.priceProperty(); }
  
+	
 	// Pack Size
-	public int getPackSize() {
-		return product.getPackSize();
-	}
+	public int getPackSize() { return product.getPackSize(); }
 	
 	@SuppressWarnings("exports")
-	public IntegerProperty packSizeProperty() {
-		return product.packSizeProperty();
-	}
+	public IntegerProperty packSizeProperty() { return product.packSizeProperty(); }
 }
