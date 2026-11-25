@@ -34,11 +34,6 @@
          <PasswordField fx:id="passwordField" promptText="Enter your password" />
       </VBox>
       
-      <VBox spacing="7.0">
-         <Label text="Continue as" />
-         <ComboBox fx:id="roleChoice" maxWidth="1.7976931348623157E308" />
-      </VBox>
-      
       <Separator />
       
       <Button fx:id="loginButton" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleLogin" text="Log-in" />
