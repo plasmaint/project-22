@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProductController" />
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProductController">
+   <padding><Insets bottom="16.0" left="16.0" right="16.0" top="16.0" /></padding>
+   
+   <top>
+      <HBox alignment="CENTER_LEFT" spacing="20.0" BorderPane.alignment="CENTER">
+         <padding><Insets bottom="12.0" /></padding>
+         
+         <Label text="Product Management">
+            <font><Font name="System Bold" size="20.0" /></font>
+         </Label>
+         <Label fx:id="productsUniqueAmount" text="Unique Products: 0">
+            <font><Font name="System Bold" size="15.0" /></font>
+         </Label>
+      </HBox>
+   </top>
+   
+   <center>
+      <TableView fx:id="productsTable" prefHeight="320.0" prefWidth="740.0" BorderPane.alignment="CENTER">
+         <columns>
+            <TableColumn fx:id="colProductId" prefWidth="100.0" text="Product ID" />
+            <TableColumn fx:id="colType" prefWidth="100.0" text="Name" />
+            <TableColumn fx:id="colName" prefWidth="100.0" text="Name" />
+            <TableColumn fx:id="colDescription" prefWidth="250.0" text="Description" />
+            <TableColumn fx:id="colPrice" prefWidth="100.0" text="Price" />
+            <TableColumn fx:id="colPackSize" prefWidth="100.0" text="Pack Size" />
+         </columns>
+      </TableView>
+   </center>
+   
+   <bottom>
+      <VBox fx:id="productManagementBox" spacing="10.0" BorderPane.alignment="CENTER">
+         <padding><Insets top="12.0" /></padding>
+         
+         <Label fx:id="statusMessageLabel" text="" />
+         <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Button onAction="#handleAddNewProduct" text="Add New Product" />
+            <Button onAction="#handleEditExistingProduct" text="Edit Existing Product" />
+         </HBox>
+      </VBox>
+   </bottom>
+</BorderPane>
