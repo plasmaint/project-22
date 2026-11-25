@@ -1,11 +1,13 @@
 package management;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import product.ProductList;
 import transaction.TransactionHandler;
 import user.Clerk;
 import user.Manager;
 import user.User;
+import persistence.PersistenceManager;
 
 public class System {
 	// Initialize
@@ -14,12 +16,33 @@ public class System {
 	private TransactionHandler transactionHandler = new TransactionHandler(inventory);
 	private ArrayList<User> users = new ArrayList<>();
 	private User currentUser;
+	private final PersistenceManager persistenceManager = new PersistenceManager();
 	
 	//Constructor, default accounts
 	public System() {
 		users.add(new Manager("john_java", "manager123", "James Gosling"));
 		users.add(new Clerk("charlie_clerk", "clerk123", "Charlie Kirk"));
 		users.add(new Clerk("erika_clerk", "clerk456", "Erika Kirk"));
+		
+		loadData();
+	}
+	
+	// Load data
+	public void loadData() {
+		try {
+			persistenceManager.loadAll(productList, inventory, transactionHandler);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}	
+
+	// Save current state to CSV files
+	public void saveData() {
+		try {
+			persistenceManager.saveAll(productList, inventory, transactionHandler);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	// Returns the logged in user
@@ -34,6 +57,7 @@ public class System {
 	}
 	
 	public void logout() {
+		saveData(); // Save
 		currentUser = null;
 	}
 	
