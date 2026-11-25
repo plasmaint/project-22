@@ -70,7 +70,7 @@ public class TransactionHandler {
 				userRecord.add(transac);
 			}
 		}
-		return null;
+		return userRecord;
 	}
 	
 	public Transaction getTransactionById(String transactionId) {
