@@ -40,7 +40,7 @@
          </HBox>
          <Label text="Monitor egg pack availability, pricing, and restock quantities." textFill="#7A6248">
             <font>
-               <Font size="13.0" />
+               <Font name="System Italic" size="13.0" />
             </font>
          </Label>
       </VBox>

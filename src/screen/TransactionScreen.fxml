@@ -50,7 +50,7 @@
 
          <Label text="Track farm wallet balance, cash-in/cash-out entries, and transaction records." textFill="#7A6248">
             <font>
-               <Font size="13.0" />
+               <Font name="System Italic" size="13.0" />
             </font>
          </Label>
       </VBox>

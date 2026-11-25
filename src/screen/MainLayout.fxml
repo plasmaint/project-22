@@ -26,7 +26,7 @@
 
          <Label text="Golden Goose EggZ" textFill="#4A341B">
             <font>
-               <Font name="Cooper Black" size="20.0" />
+               <Font name="Cooper Black" size="24.0" />
             </font>
          </Label>
 
