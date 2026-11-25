@@ -21,12 +21,8 @@ public class DashboardController {
     @FXML private VBox clerkStatsContainer;
     @FXML private ComboBox<Clerk> clerkSelector;
 
-    private Dashboard dashboard;
-
     // Receives the appropriate dashboard
     public void setDashboard(Dashboard dashboard) {
-        this.dashboard = dashboard;
-
         titleLabel.setText(dashboard.getTitle());
         subtitleLabel.setText(dashboard.getSubtitle());
 

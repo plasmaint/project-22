@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import management.System;
-import management.Dashboard;
 import management.ManagerDashboard;
 import management.ClerkDashboard;
 import user.Clerk;
