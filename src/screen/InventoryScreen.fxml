@@ -1,32 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InventoryController">
-
-   <Label text="Inventory" />
-
-   <TableView fx:id="inventoryTable">
-      <columns>
-         <TableColumn fx:id="colType" prefWidth="100.0" text="Type" />
-         <TableColumn fx:id="colProductName" prefWidth="100.0" text="Variant" />
-         <TableColumn fx:id="colPackSize" prefWidth="100.0" text="Pack Size" />
-         <TableColumn fx:id="colStock" prefWidth="100.0" text="Stock (packs)" />
-         <TableColumn fx:id="colPrice" prefWidth="100.0" text="Price (Php)" />
-      </columns>
-   </TableView>
-
-   <HBox fx:id="restockBox">
-      <TextField fx:id="amountField" promptText="Packs to add" />
-      <Button text="Restock" onAction="#handleRestock" />
-   </HBox>
-
-   <Label fx:id="messageLabel" />
-
-</VBox>
+<BorderPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InventoryController">
+   <padding><Insets bottom="16.0" left="16.0" right="16.0" top="16.0" /></padding>
+   
+   <top>
+      <HBox alignment="CENTER_LEFT" BorderPane.alignment="CENTER">
+         <padding><Insets bottom="12.0" /></padding>
+         <Label text="Inventory Management">
+            <font><Font name="System Bold" size="20.0" /></font>
+         </Label>
+      </HBox>
+   </top>
+   
+   <center>
+      <TableView fx:id="inventoryTable" prefHeight="320.0" prefWidth="740.0" BorderPane.alignment="CENTER">
+         <columns>
+            <TableColumn fx:id="colType" prefWidth="100.0" text="Type" />
+            <TableColumn fx:id="colProductName" prefWidth="100.0" text="Variant" />
+            <TableColumn fx:id="colPackSize" prefWidth="100.0" text="Pack Size" />
+            <TableColumn fx:id="colStock" prefWidth="100.0" text="Stock (packs)" />
+            <TableColumn fx:id="colPrice" prefWidth="100.0" text="Price (Php)" />
+         </columns>
+      </TableView>
+   </center>
+   
+   <bottom>
+      <VBox spacing="10.0" BorderPane.alignment="CENTER">
+         <padding><Insets top="12.0" /></padding>
+      
+         <Label fx:id="messageLabel" />
+         
+         <HBox fx:id="stockManagementBox" alignment="CENTER_LEFT" spacing="10.0">
+            <TextField fx:id="amountField" promptText="Packs to add" />
+            <Button onAction="#handleAddStock" text="Add Stock" />
+            <Button onAction="#handleDeductStock" text="Deduct Stock" />
+            <Button onAction="#handleClearStock" text="Clear Stock" />
+         </HBox>
+      </VBox>
+   </bottom>
+</BorderPane>

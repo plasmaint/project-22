@@ -21,7 +21,7 @@ public class InventoryController {
     @FXML private TableColumn<InventoryItem, Double> colPrice;
     @FXML private TextField amountField;
 	@FXML private Label messageLabel;
-	@FXML private HBox restockBox;
+	@FXML private HBox stockManagementBox;
 
 	// Shared inventory
 	private Inventory inventory;
@@ -44,13 +44,13 @@ public class InventoryController {
     
     // Only the Manager can restock, so the Clerk does not see the restock row
     public void setRestockAllowed(boolean allowed) {
-    	restockBox.setVisible(allowed);
-    	restockBox.setManaged(allowed);
+    	stockManagementBox.setVisible(allowed);
+    	stockManagementBox.setManaged(allowed);
     }
     
     // When restock button clicked
     @FXML
-	private void handleRestock() {
+	private void handleAddStock() {
 		InventoryItem selected = inventoryTable.getSelectionModel().getSelectedItem(); // Product selected
 		if (selected == null) {
 			messageLabel.setText("Select a product in the table.");
@@ -59,7 +59,7 @@ public class InventoryController {
  
 		try {
 			int amount = Integer.parseInt(amountField.getText()); // Amount input
-			inventory.restock(selected.getProduct().getProductId(), amount);
+			inventory.addStock(selected.getProduct().getProductId(), amount);
 			messageLabel.setText("Added " + amount + " packs to " + selected.getProduct() + ".");
 			amountField.clear();
 		} catch (NumberFormatException e) {
@@ -68,4 +68,44 @@ public class InventoryController {
 			messageLabel.setText("Invalid input.");
 		}
 	}
+    
+    @FXML
+    private void handleDeductStock() {
+		InventoryItem selected = inventoryTable.getSelectionModel().getSelectedItem(); // Product selected
+		if (selected == null) {
+			messageLabel.setText("Select a product in the table.");
+			return;
+		}
+    	
+		try {
+			int amount = Integer.parseInt(amountField.getText()); // Amount input
+			inventory.deductStock(selected.getProduct().getProductId(), amount);
+			messageLabel.setText("Deducted " + amount + " packs from " + selected.getProduct() + ".");
+			amountField.clear();
+		} catch (NumberFormatException e) {
+			messageLabel.setText("Stock must be whole number.");
+		} catch (IllegalArgumentException e) {
+			messageLabel.setText("Invalid input.");
+		}
+    }
+    
+    @FXML
+    private void handleClearStock() {
+		InventoryItem selected = inventoryTable.getSelectionModel().getSelectedItem(); // Product selected
+		if (selected == null) {
+			messageLabel.setText("Select a product in the table.");
+			return;
+		}
+    	
+		try {
+			int amount = selected.getStockQuantity(); // Amount of stock
+			inventory.clearStock(selected.getProduct().getProductId());
+			messageLabel.setText("Cleared " + amount + " packs from " + selected.getProduct() + ".");
+			amountField.clear();
+		} catch (NumberFormatException e) {
+			messageLabel.setText("Stock is not a whole number.");
+		} catch (IllegalArgumentException e) {
+			messageLabel.setText("Product already has 0 stock.");
+		}
+    }
 }
