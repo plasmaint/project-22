@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
 import management.System;
 
 public class LoginController {
@@ -21,7 +23,7 @@ public class LoginController {
     @FXML private Button loginButton;
     @FXML private Label errorLabel;
     
-    // Get system from main
+    // System from Main
     private System system;
     
     public void setSystem(System system) {
@@ -63,14 +65,12 @@ public class LoginController {
         
         try {
             FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/screen/MainLayout.fxml")
-            );
-
+                getClass().getResource("/screen/MainLayout.fxml"));
             Parent root = loader.load();
 
             // Retrieve the MainController.
             MainController mainController = loader.getController();
-            // mainController.setSystem(system);
+            mainController.setSystem(system);
 
             // TODO: Pass the authenticated User to MainController.
 

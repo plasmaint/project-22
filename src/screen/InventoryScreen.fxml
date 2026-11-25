@@ -22,7 +22,7 @@
       </columns>
    </TableView>
 
-   <HBox>
+   <HBox fx:id="restockBox">
       <TextField fx:id="amountField" promptText="Packs to add" />
       <Button text="Restock" onAction="#handleRestock" />
    </HBox>

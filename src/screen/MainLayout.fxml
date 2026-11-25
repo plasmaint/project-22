@@ -17,7 +17,7 @@
          
          <Label text="GGEZ MANAGEMENT SYSTEM" />
          <Region HBox.hgrow="ALWAYS" />
-         <Label text="SIGNED IN AS" />
+         <Label text="SIGNED IN AS:" />
          <Label fx:id="roleLabel" text="MANAGER" />
          <Button onAction="#handleLogout" text="Log out" />
       </HBox>

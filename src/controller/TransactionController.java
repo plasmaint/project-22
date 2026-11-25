@@ -8,19 +8,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import transaction.Transaction;
 
 public class TransactionController {
 
 	@FXML private Label walletBalanceLabel;
-	@FXML private TableView<?> transactionTable;
-    @FXML private TableColumn<?, ?> colAmount;
-    @FXML private TableColumn<?, ?> colDateTime;
-    @FXML private TableColumn<?, ?> colRecordedBy;
-    @FXML private TableColumn<?, ?> colStatus;
-    @FXML private TableColumn<?, ?> colTransactionId;
-    @FXML private TableColumn<?, ?> colType;
+	@FXML private TableView<Transaction> transactionTable;
+    @FXML private TableColumn<Transaction, Double> colAmount;
+    @FXML private TableColumn<Transaction, String> colDateTime;
+    @FXML private TableColumn<Transaction, String> colRecordedBy;
+    @FXML private TableColumn<Transaction, String> colStatus;
+    @FXML private TableColumn<Transaction, String> colTransactionId;
+    @FXML private TableColumn<Transaction, String> colType;
 
-    @FXML private ComboBox<?> flowTypeComboBox;
+    @FXML private ComboBox<String> flowTypeComboBox;
     @FXML private TextField amountField;
     @FXML private TextField noteField;
     @FXML private Button recordCashButton;
