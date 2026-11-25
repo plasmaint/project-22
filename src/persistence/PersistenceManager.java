@@ -10,8 +10,8 @@ import transaction.TransactionHandler;
 import transaction.Wallet;
 
 public class PersistenceManager {
-    private static final int DEFAULT_INITIAL_STOCK = 20;
-    private static final double DEFAULT_STARTING_WALLET_BALANCE = 0.0;
+    private static final int INITIAL_STOCK = 20;
+    private static final double STARTING_BALANCE = 0.0;
 
     private final ProductStorage productStorage;
     private final InventoryStorage inventoryStorage;
@@ -45,10 +45,10 @@ public class PersistenceManager {
         productList.getProducts().addAll(products);
 
         // Load inventory stock matched by productId
-        inventoryStorage.loadInto(inventory, products, DEFAULT_INITIAL_STOCK);
+        inventoryStorage.loadInto(inventory, products, INITIAL_STOCK);
 
         // Load wallet balance and replace TransactionHandler's wallet reference
-        Wallet loadedWallet = walletStorage.loadOrDefault(DEFAULT_STARTING_WALLET_BALANCE);
+        Wallet loadedWallet = walletStorage.loadOrDefault(STARTING_BALANCE);
         setHandlerWallet(transactionHandler, loadedWallet);
 
         // Load transaction history and sale line items
