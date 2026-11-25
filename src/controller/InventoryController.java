@@ -6,13 +6,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import management.Inventory;
 import management.InventoryItem;
 
 public class InventoryController {
 
-	// From FXML
     @FXML private TableView<InventoryItem> inventoryTable;
     @FXML private TableColumn<InventoryItem, String> colType;
     @FXML private TableColumn<InventoryItem, String> colProductName;
@@ -21,7 +20,7 @@ public class InventoryController {
     @FXML private TableColumn<InventoryItem, Double> colPrice;
     @FXML private TextField amountField;
 	@FXML private Label messageLabel;
-	@FXML private HBox stockManagementBox;
+	@FXML private VBox stockManagementBox;
 
 	// Shared inventory
 	private Inventory inventory;
@@ -42,13 +41,13 @@ public class InventoryController {
     	inventoryTable.setItems(inventory.getItems());
     }
     
-    // Only the Manager can restock, so the Clerk does not see the restock row
+    // Only the Manager can manage inventory, so the Clerk does not see the stock management row
     public void setRestockAllowed(boolean allowed) {
     	stockManagementBox.setVisible(allowed);
     	stockManagementBox.setManaged(allowed);
     }
     
-    // When restock button clicked
+    // *** Stock Management Methods ***
     @FXML
 	private void handleAddStock() {
 		InventoryItem selected = inventoryTable.getSelectionModel().getSelectedItem(); // Product selected
