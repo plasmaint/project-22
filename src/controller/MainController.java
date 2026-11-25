@@ -18,6 +18,12 @@ import user.User;
 
 public class MainController {
 
+	private static final String ACTIVE_NAV_STYLE =
+			"-fx-background-color: #ffcd14; -fx-background-radius: 8; -fx-text-fill: #2F1D0E; -fx-padding: 0 12 0 12; -fx-cursor: hand;";
+
+	private static final String INACTIVE_NAV_STYLE =
+			"-fx-background-color: #FAF7EC; -fx-background-radius: 8; -fx-border-color: #E7DEC4; -fx-border-radius: 8; -fx-text-fill: #3E2714; -fx-padding: 0 12 0 12; -fx-cursor: hand;";
+	
 	@FXML private Label roleLabel;
     
 	@FXML private Button dashboardButton;
@@ -51,6 +57,22 @@ public class MainController {
  		button.setManaged(false);
  	}
     
+ // Highlights the active sidebar button and resets the rest
+ 	private void setActiveNav(Button activeButton) {
+ 		Button[] navButtons = {
+ 			dashboardButton,
+ 			inventoryButton,
+ 			productsButton,
+ 			transactionsButton,
+ 			clerkSalesButton
+ 		};
+ 		for (Button btn : navButtons) {
+ 			if (btn != null) {
+ 				btn.setStyle(btn == activeButton ? ACTIVE_NAV_STYLE : INACTIVE_NAV_STYLE);
+ 			}
+ 		}
+ 	}
+ 	
     // Handles the logout process.
     @FXML
     void handleLogout() {
@@ -61,6 +83,7 @@ public class MainController {
         	// Retrieve login screen and give it the system again.
 			FXMLLoader loader = new FXMLLoader(
 					getClass().getResource("/screen/LoginScreen.fxml"));
+			
 			Parent root = loader.load();
 			
 			LoginController loginController = loader.getController();
@@ -117,21 +140,34 @@ public class MainController {
     }
     
     // Switches main content area to respective content screens.
-    @FXML void openDashboard() { loadContent("DashboardScreen.fxml");    }
-    @FXML void openInventory() { loadContent("InventoryScreen.fxml");    }    
-    @FXML void openTransactions() { loadContent("TransactionScreen.fxml");  }
+    @FXML void openDashboard() {
+    	setActiveNav(dashboardButton);
+    	loadContent("DashboardScreen.fxml");    
+    }
+    @FXML void openInventory() { 
+    	setActiveNav(inventoryButton);
+    	loadContent("InventoryScreen.fxml");    
+    }    
+    @FXML void openTransactions() { 
+    	setActiveNav(transactionsButton);
+    	loadContent("TransactionScreen.fxml"); 
+    }
     
     // Manager only screens
     @FXML void openProducts() { 
     	if (!system.getCurrentUser().isManager()) {
     		return;
     	}
+    	
+    	setActiveNav(productsButton);
     	loadContent("ProductScreen.fxml");
     }
     @FXML void openClerkSales() { 
     	if (!system.getCurrentUser().isManager()) {
     		return;
     	}
+    	
+    	setActiveNav(clerkSalesButton);
     	loadContent("ClerkSalesScreen.fxml");
     }
 }
