@@ -42,7 +42,7 @@ public class TransactionHandler {
 		}
 		
 		for (SaleItem item : sale.getItems()) {
-			inventory.removeStock(item.getProduct().getProductId(), item.getQuantity());
+			inventory.deductStock(item.getProduct().getProductId(), item.getQuantity());
 		}
 		wallet.cashIn(sale.getAmount());
 		transactions.add(sale);

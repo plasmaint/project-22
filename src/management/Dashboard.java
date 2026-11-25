@@ -2,6 +2,7 @@ package management;
 
 import java.util.ArrayList;
 import java.util.Map;
+
 import transaction.Transaction;
 
 public abstract class Dashboard {
@@ -66,5 +67,8 @@ public abstract class Dashboard {
 	
 	public abstract ArrayList<Transaction> getTransactions();
 	
+	public abstract String getTitle();
+
+	public abstract String getSubtitle();
 	
 }
