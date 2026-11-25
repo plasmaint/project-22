@@ -24,7 +24,7 @@ public class ManagerDashboard extends Dashboard {
         stats.put("Sales Recorded", String.valueOf(countCompleted(records)));
         stats.put("Voided", String.valueOf(countVoided(records)));
         stats.put("Low-Stock Products", String.valueOf(countLowStock()));
-        stats.put("Clerks", String.valueOf(getClerks().size()));
+        stats.put("Clerks", String.valueOf(system.getClerks().size()));
 
         return stats;
 	}
@@ -52,11 +52,6 @@ public class ManagerDashboard extends Dashboard {
 	    stats.put("Voided", String.valueOf(countVoided(records)));
 
 	    return stats;
-	}
-	
-	// Returns all registered clerks
-	public ArrayList<Clerk> getClerks() {
-	    return system.getClerks();
 	}
 	
 	@Override
