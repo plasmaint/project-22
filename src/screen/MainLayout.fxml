@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="680.0" prefWidth="1060.0" style="-fx-background-color: #FAF7EC;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<BorderPane prefHeight="680.0" prefWidth="1060.0" style="-fx-background-color: #FAF7EC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <top>
       <HBox alignment="CENTER_LEFT" spacing="12.0" style="-fx-background-color: #FFFDF7; -fx-border-color: #E7DEC4; -fx-border-width: 0 0 1.5 0;" styleClass="topbar">
          <padding>

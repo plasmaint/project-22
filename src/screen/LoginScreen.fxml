@@ -6,6 +6,8 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
@@ -21,6 +23,11 @@
       <padding>
          <Insets bottom="32.0" left="36.0" right="36.0" top="32.0" />
       </padding>
+      <ImageView fitHeight="107.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/ggez_logo.png" />
+         </image>
+      </ImageView>
 
       <!-- Brand Header -->
       <VBox alignment="CENTER" spacing="4.0">
