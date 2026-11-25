@@ -90,7 +90,8 @@ public class MainController {
             	inventoryController.setInventory(system.getInventory());
             	inventoryController.setRestockAllowed(system.getCurrentUser().isManager()); // only the Manager can restock
             } else if (childController instanceof ProductController) {
-            	// TODO: set/load products
+            	ProductController productController = (ProductController) childController;
+            	productController.setProducts(system.getProductList());
             }
             
             // Replace main content area with respective screen.
