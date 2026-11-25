@@ -55,7 +55,6 @@
          
          <HBox alignment="CENTER_LEFT" spacing="10.0">
             <Button fx:id="voidTransactionButton" onAction="#handleVoidTransaction" style="-fx-background-color: F0735D;" text="Void Selected Transaction" textFill="WHITE" />
-            <Button fx:id="backButton" onAction="#handleBack" style="-fx-background-color: F0CD5D;" text="Back to Dashboard" textFill="WHITE" />
             <Label fx:id="statusMessageLabel" text="" />
          </HBox>
       </VBox>
