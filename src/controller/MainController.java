@@ -11,6 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import management.System;
+import management.Dashboard;
+import management.ManagerDashboard;
+import management.ClerkDashboard;
+import user.Clerk;
 import user.User;
 
 public class MainController {
@@ -92,6 +96,18 @@ public class MainController {
             } else if (childController instanceof ProductController) {
             	ProductController productController = (ProductController) childController;
             	productController.setProducts(system.getProductList());
+            } else if (childController instanceof DashboardController) {
+
+                DashboardController dashboardController = (DashboardController) childController;
+
+                if (system.getCurrentUser().isManager()) {
+
+                    dashboardController.setDashboard(new ManagerDashboard(system));
+                } else {
+                    Clerk clerk = (Clerk) system.getCurrentUser();
+
+                    dashboardController.setDashboard(new ClerkDashboard(system, clerk));
+                }
             }
             
             // Replace main content area with respective screen.
