@@ -11,7 +11,7 @@ public class Inventory {
 	@SuppressWarnings("exports")
 	public Inventory(ProductList products) {
 		for (EggProduct product : products.getProducts()) {
-			items.add(new InventoryItem(product, 20, "B-001"));
+			items.add(new InventoryItem(product, 20));
 		}
 	}
 	
@@ -39,21 +39,20 @@ public class Inventory {
 	
 	// Add new product
 	@SuppressWarnings("exports")
-	public void addNewProduct(EggProduct product, int stock, String batchId) {
+	public void addNewProduct(EggProduct product, int stock) {
 		if (findByProductId(product.getProductId()) != null) {
 			throw new IllegalArgumentException("Product already in the inventory");
 		}
-		items.add(new InventoryItem(product, stock, batchId));
+		items.add(new InventoryItem(product, stock));
 	}
 	
 	// Add packs to an existing product
-	public void restock(String productId, int amount, String batchId) {
+	public void restock(String productId, int amount) {
 		InventoryItem item = findByProductId(productId);
 		if (item == null) {
 			throw new IllegalArgumentException("Product " + productId + " not found.");
 		}
 		item.addStock(amount);
-		item.setBatchId(batchId);
 	}
  
 	// Take packs out of stock

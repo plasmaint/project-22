@@ -11,11 +11,10 @@ public class InventoryItem {
 	// Attributes
 	private EggProduct product;
 	private IntegerProperty stockQuantity;
-	private StringProperty batchId;
 	
 	// Constructor
 	@SuppressWarnings("exports")
-	public InventoryItem(EggProduct product, int stockQuantity, String batchId) {
+	public InventoryItem(EggProduct product, int stockQuantity) {
 		if (product == null) {
 			throw new IllegalArgumentException("Product can not be empty.");
 		}
@@ -24,13 +23,8 @@ public class InventoryItem {
 			throw new IllegalArgumentException("Stock can not be negative.");
 		}
 		
-		if (batchId.trim().equals("")) {
-			throw new IllegalArgumentException("ID can not be empty.");
-		}
-		
 		this.product = product;
 		this.stockQuantity = new SimpleIntegerProperty(stockQuantity);
-		this.batchId = new SimpleStringProperty(batchId);
 	}
 	
 	
@@ -73,20 +67,6 @@ public class InventoryItem {
 	@SuppressWarnings("exports")
 	public IntegerProperty stockQuantityProperty() {
 		return stockQuantity;
-	}
- 
-	// Batch ID
-	public String getBatchId() {
-		return batchId.get();
-	}
- 
-	public void setBatchId(String batchId) {
-		this.batchId.set(batchId);
-	}
- 
-	@SuppressWarnings("exports")
-	public StringProperty batchIdProperty() {
-		return batchId;
 	}
 	
 	// Egg Type

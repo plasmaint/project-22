@@ -18,9 +18,7 @@ public class InventoryController {
     @FXML private TableColumn<InventoryItem, Integer> colPackSize;
     @FXML private TableColumn<InventoryItem, Integer> colStock;
     @FXML private TableColumn<InventoryItem, Double> colPrice;
-    @FXML private TableColumn<InventoryItem, String> colBatchId;
     @FXML private TextField amountField;
-	@FXML private TextField batchField;
 	@FXML private Label messageLabel;
 
 	// Shared inventory
@@ -35,7 +33,6 @@ public class InventoryController {
 		colPackSize.setCellValueFactory(new PropertyValueFactory<>("packSize"));
 		colStock.setCellValueFactory(new PropertyValueFactory<>("stockQuantity"));
 		colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-		colBatchId.setCellValueFactory(new PropertyValueFactory<>("batchId"));
     }
     
     public void setInventory(Inventory inventory) {
@@ -52,18 +49,11 @@ public class InventoryController {
 			return;
 		}
  
-		String batch = batchField.getText().trim(); // Batch ID input
-		if (batch.equals("")) {
-			messageLabel.setText("Enter a batch ID.");
-			return;
-		}
- 
 		try {
 			int amount = Integer.parseInt(amountField.getText()); // Amount input
-			inventory.restock(selected.getProduct().getProductId(), amount, batch);
+			inventory.restock(selected.getProduct().getProductId(), amount);
 			messageLabel.setText("Added " + amount + " packs to " + selected.getProduct() + ".");
 			amountField.clear();
-			batchField.clear();
 		} catch (NumberFormatException e) {
 			messageLabel.setText("Stock must be whole number.");
 		} catch (IllegalArgumentException e) {

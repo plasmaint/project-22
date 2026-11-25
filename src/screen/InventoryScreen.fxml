@@ -19,13 +19,11 @@
          <TableColumn fx:id="colPackSize" prefWidth="100.0" text="Pack Size" />
          <TableColumn fx:id="colStock" prefWidth="100.0" text="Stock (packs)" />
          <TableColumn fx:id="colPrice" prefWidth="100.0" text="Price (Php)" />
-         <TableColumn fx:id="colBatchId" prefWidth="100.0" text="Batch ID" />
       </columns>
    </TableView>
 
    <HBox>
       <TextField fx:id="amountField" promptText="Packs to add" />
-      <TextField fx:id="batchField" promptText="Batch ID" />
       <Button text="Restock" onAction="#handleRestock" />
    </HBox>
 
