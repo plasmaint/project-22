@@ -58,7 +58,7 @@ public abstract class Dashboard {
 	}
 
 	// Peso format
-	protected String peso(double amount) {
+	public static String peso(double amount) {
 		return String.format("₱%,.2f", amount);
 	}
 	
