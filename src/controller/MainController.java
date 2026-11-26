@@ -45,10 +45,9 @@ public class MainController {
     	
     	if (!user.isManager()) {
     		hide(productsButton);
-    		hide(clerkSalesButton);
     	}
     	
-    	openInventory();
+    	openDashboard();
     }
     
     // Hides a button
@@ -117,22 +116,21 @@ public class MainController {
             	inventoryController.setRestockAllowed(system.getCurrentUser().isManager()); // only the Manager can restock
             } else if (childController instanceof ProductController) {
             	ProductController productController = (ProductController) childController;
-				productController.setProducts(system.getProductList(), system.getInventory());
+            	productController.setProducts(system.getProductList());
             } else if (childController instanceof DashboardController) {
-
                 DashboardController dashboardController = (DashboardController) childController;
 
                 if (system.getCurrentUser().isManager()) {
-
                     dashboardController.setDashboard(new ManagerDashboard(system));
                 } else {
                     Clerk clerk = (Clerk) system.getCurrentUser();
-
                     dashboardController.setDashboard(new ClerkDashboard(system, clerk));
                 }
-            } else if (childController instanceof TransactionController) {
-                TransactionController transactionController = (TransactionController) childController;
-                transactionController.setSystem(system);
+            } else if (childController instanceof ClerkSalesController) {
+            	ClerkSalesController clerkSalesController = (ClerkSalesController) childController;
+            	clerkSalesController.setSystem(system);
+            	clerkSalesController.setSelectClerkAllowed(system.getCurrentUser().isManager()); // Clerk can only view own history
+            	clerkSalesController.setProcessSalesAllowed(!system.getCurrentUser().isManager()); // Manager can't process sales
             }
             
             // Replace main content area with respective screen.
@@ -166,10 +164,6 @@ public class MainController {
     	loadContent("ProductScreen.fxml");
     }
     @FXML void openClerkSales() { 
-    	if (!system.getCurrentUser().isManager()) {
-    		return;
-    	}
-    	
     	setActiveNav(clerkSalesButton);
     	loadContent("ClerkSalesScreen.fxml");
     }
