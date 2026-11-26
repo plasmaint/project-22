@@ -130,6 +130,9 @@ public class MainController {
 
                     dashboardController.setDashboard(new ClerkDashboard(system, clerk));
                 }
+            } else if (childController instanceof TransactionController) {
+                TransactionController transactionController = (TransactionController) childController;
+                transactionController.setSystem(system);
             }
             
             // Replace main content area with respective screen.
