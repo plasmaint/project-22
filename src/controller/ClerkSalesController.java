@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
+import javafx.util.StringConverter;
 import management.InventoryItem;
 import management.System;
 import transaction.*;
@@ -24,10 +25,10 @@ public class ClerkSalesController {
     
     @FXML private VBox processSalesSection;
     @FXML private TableView<SaleItem> cartTable;
-    @FXML private TableColumn<SaleItem, String> colCartType;
-    @FXML private TableColumn<SaleItem, String> colCartName;
+    @FXML private TableColumn<SaleItem, String> colCartProduct;
     @FXML private TableColumn<SaleItem, Integer> colCartQuantity;
     @FXML private TableColumn<SaleItem, Double> colCartPrice;
+    @FXML private TableColumn<SaleItem, Double> colCartTotal;
     @FXML private ComboBox<InventoryItem> productSelector;
     @FXML private TextField quantityField;
     @FXML private Label statusLabel;
@@ -50,35 +51,52 @@ public class ClerkSalesController {
         }
     }
 
-    // Manager can't process sales
+    // Helper. Combines eggType, productName, and stockQuantity for the product selector in Sales Processing.
+    private String combineLabel(InventoryItem item) {
+        if (item == null) return "";
+        return item.getEggType() + " (" + item.getProductName() + ")"
+        		+ " - " + item.getStockQuantity();
+    }
+    
+    // Configures processSalesSection VBox visisbility.
+    // Used to hide the 'Sales Processing' section from manager view.
     public void setProcessSalesAllowed(boolean allowed) {
     	processSalesSection.setVisible(allowed);
     	processSalesSection.setManaged(allowed);
     }
-    // Clerk can only view own history
- 	public void setSelectClerkAllowed(boolean allowed) {
+    // Configures clerkSelector ComboBox visisbility.
+ 	// Used to hide the 'Clerk' choice box from clerk view.
+    public void setSelectClerkAllowed(boolean allowed) {
     	clerkSelector.setVisible(allowed);
     	clerkSelector.setManaged(allowed);
  	}
-
     private void setUpManagerView() {
+    	// Assigns clerks as choices in the clerk selector.
         clerkSelector.getItems().setAll(system.getClerks());
         
-        // Select first clerk automatically
+        // Defaults 'Clerk Sales History' table to first clerk's sales history.
         if (!clerkSelector.getItems().isEmpty()) {
             clerkSelector.getSelectionModel().selectFirst();
             loadHistory(clerkSelector.getValue());
         }
         
-        // For clerk selection
+        // Loads history whenever a clerk is selected in the clerk selector.
         clerkSelector.setOnAction(event -> {
         	loadHistory(clerkSelector.getValue());
         });
     }
     private void setUpClerkView() {
+    	// Loads sales history of user clerk.
         loadHistory((Clerk) user);
         
+        // Assigns product labels as choices in the product selector.
+        productSelector.setConverter(new StringConverter<InventoryItem>() {
+            @Override public String toString(InventoryItem item) { return combineLabel(item); }
+            @Override public InventoryItem fromString(String s) { return null; }
+        });
         productSelector.setItems(system.getInventory().getItems());
+        
+        // Creates a fresh cart ready for sales processing.
         setUpCartColumns();
         startNewCart();
     }
@@ -111,9 +129,9 @@ public class ClerkSalesController {
 
         // Count whats in the cart
         int inCart = 0;
-        for (SaleItem si : cart.getItems()) {
-            if (si.getProduct().getProductId().equals(selected.getProduct().getProductId())) {
-                inCart = si.getQuantity();
+        for (SaleItem saleItem : cart.getItems()) {
+            if (saleItem.getProduct().getProductId().equals(selected.getProduct().getProductId())) {
+                inCart = saleItem.getQuantity();
             }
         }
         if (!selected.stockEnough(inCart + quantity)) {
@@ -149,6 +167,7 @@ public class ClerkSalesController {
 
     private void refreshCart() {
         cartTable.setItems(FXCollections.observableArrayList(cart.getItems()));
+        cartTable.refresh(); // Re-read SaleItem values when adding to cart more than once
         totalValueLabel.setText(String.format("Total: ₱%.2f", cart.getAmount()));
     }
 
@@ -160,9 +179,9 @@ public class ClerkSalesController {
     }
 
     private void setUpCartColumns() {
-        colCartType.setCellValueFactory(new PropertyValueFactory<>("eggType"));
-        colCartType.setCellValueFactory(new PropertyValueFactory<>("productName"));
+        colCartProduct.setCellValueFactory(new PropertyValueFactory<>("productLabel"));
         colCartQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        colCartPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        colCartPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+        colCartTotal.setCellValueFactory(new PropertyValueFactory<>("priceTotal"));
     }
 }

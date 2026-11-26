@@ -96,10 +96,10 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                      <columns>
-                        <TableColumn fx:id="colCartType" prefWidth="130.0" text="Type" />
-                        <TableColumn fx:id="colCartName" prefWidth="160.0" text="Variant" />
+                        <TableColumn fx:id="colCartProduct" prefWidth="150.0" text="Product" />
                         <TableColumn fx:id="colCartQuantity" prefWidth="120.0" text="Quantity (packs)" />
                         <TableColumn fx:id="colCartPrice" prefWidth="120.0" text="Price (Php)" />
+                        <TableColumn fx:id="colCartTotal" prefWidth="150.0" text="Total (Php)" />
                      </columns>
                   </TableView>
                   <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #FAF7EC; -fx-background-radius: 10; -fx-border-color: #E7DEC4; -fx-border-radius: 10;">
@@ -122,8 +122,8 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" spacing="12.0">
                      <children>
-                        <ComboBox fx:id="productSelector" prefHeight="34.0" prefWidth="171.0" promptText="Select a product" style="-fx-background-color: #FAF7EC; -fx-background-radius: 8; -fx-border-color: #DDD0AE; -fx-border-radius: 8;" />
-                        <TextField fx:id="quantityField" prefHeight="38.0" prefWidth="180.0" promptText="Number of packs" style="-fx-background-color: #FAF7EC; -fx-background-radius: 8; -fx-border-color: #DDD0AE; -fx-border-radius: 8; -fx-text-fill: #3E2714; -fx-prompt-text-fill: #9E8A70; -fx-padding: 0 12 0 12;" />
+                        <ComboBox fx:id="productSelector" prefHeight="38.0" prefWidth="200.0" promptText="Select a product" style="-fx-background-color: #FAF7EC; -fx-background-radius: 8; -fx-border-color: #DDD0AE; -fx-border-radius: 8;" />
+                        <TextField fx:id="quantityField" prefHeight="38.0" prefWidth="150.0" promptText="Number of packs" style="-fx-background-color: #FAF7EC; -fx-background-radius: 8; -fx-border-color: #DDD0AE; -fx-border-radius: 8; -fx-text-fill: #3E2714; -fx-prompt-text-fill: #9E8A70; -fx-padding: 0 12 0 12;" />
                         <Button mnemonicParsing="false" onAction="#handleAddToCart" prefHeight="38.0" style="-fx-background-color: #F3EAD2; -fx-background-radius: 8; -fx-border-color: #DDD0AE; -fx-border-radius: 8; -fx-text-fill: #3E2714; -fx-padding: 0 16 0 16; -fx-cursor: hand;" text="Add to Cart">
                            <font>
                               <Font name="System Bold" size="12.5" />
