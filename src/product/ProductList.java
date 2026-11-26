@@ -45,6 +45,25 @@ public class ProductList {
 		return null;
 	}
 	
+	// Makes the next free ID
+	public String generateProductId() {
+		int highest = 0;
+		for (EggProduct product : products) {
+			String id = product.getProductId();
+			if (id.startsWith("P-")) {
+				try {
+					int number = Integer.parseInt(id.substring(2));
+					if (number > highest) {
+						highest = number;
+					}
+				} catch (NumberFormatException e) {
+					// not a generated ID
+				}
+			}
+		}
+		return String.format("P-%02d", highest + 1);
+	}
+	
 	// Add a product, can not have same Id as others
 	public void addProduct(EggProduct product) {
 		if (findById(product.getProductId()) != null) {

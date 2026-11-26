@@ -117,7 +117,7 @@ public class MainController {
             	inventoryController.setRestockAllowed(system.getCurrentUser().isManager()); // only the Manager can restock
             } else if (childController instanceof ProductController) {
             	ProductController productController = (ProductController) childController;
-            	productController.setProducts(system.getProductList());
+            	productController.setProducts(system.getProductList(), system.getInventory());
             } else if (childController instanceof DashboardController) {
 
                 DashboardController dashboardController = (DashboardController) childController;

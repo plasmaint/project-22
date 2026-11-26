@@ -59,9 +59,6 @@ public class LoginController {
 			return;
 		}		
         
-        // TODO: Authenticate credentials, identify user, and determine permissions.
-        // TODO: Login user and switch screen to MainLayout.
-        
         try {
         	// Retrieve main layout.
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/screen/MainLayout.fxml"));
