@@ -15,11 +15,12 @@ import transaction.SaleItem;
 import transaction.SaleTransaction;
 import transaction.Transaction;
 import transaction.TransactionHandler;
+import transaction.CashFlowTransaction;
 
 public class TransactionStorage {
     private static final String TRANSACTIONS_PATH = "data/transactions.csv";
     private static final String ITEMS_PATH = "data/sale_items.csv";
-    private static final String TRANSACTIONS_HEADER = "transactionId,type,recordedBy,dateTime,voided,amount";
+    private static final String TRANSACTIONS_HEADER = "transactionId,type,recordedBy,dateTime,voided,amount,note";
     private static final String ITEMS_HEADER = "transactionId,productId,quantity,unitPrice";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
@@ -118,6 +119,29 @@ public class TransactionStorage {
                     sale.markVoided();
                 
                 loadedTransactions.add(sale);
+            }  else if ("Cash In".equalsIgnoreCase(type) || "Cash Out".equalsIgnoreCase(type)) {
+                double amount;
+
+                try {
+                    amount = Double.parseDouble(cols[5].trim());
+                } catch (NumberFormatException e) {
+                    throw new IOException("Invalid cash flow amount at line " + (i + 2), e);
+                }
+                
+                String note;
+                if (cols.length > 6) note = cols[6].trim();
+                else note = "";
+        
+
+                CashFlowTransaction cashFlow = new CashFlowTransaction(transactionId, recordedBy, type, amount, note);
+                setTransactionDateTime(cashFlow, dateTime);
+
+                if (voided) {
+                    cashFlow.markVoided();
+                }
+
+                loadedTransactions.add(cashFlow);
+
             } else {
                 throw new IOException("Unsupported transaction type '" + type + "' at line " + (i + 2));
             }
@@ -135,6 +159,12 @@ public class TransactionStorage {
         List<String[]> itemRows = new ArrayList<>();
 
         for (Transaction t : handler.getTransactions()) {
+        	String note = "";
+        	
+        	if (t instanceof CashFlowTransaction cashFlow) {
+                note = cashFlow.getNote();
+            }
+        	
         	transactionRows.add(new String[] {
                 t.getTransactionId(),
                 t.getType(),

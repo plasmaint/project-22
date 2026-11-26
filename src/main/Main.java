@@ -31,6 +31,9 @@ public class Main extends Application {
 	        
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Golden Goose Eggz Management System");
+			primaryStage.setOnCloseRequest(event -> {
+			    system.saveData();
+			});
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
