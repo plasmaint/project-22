@@ -47,23 +47,7 @@ public class TransactionHandler {
 		wallet.cashIn(sale.getAmount());
 		transactions.add(sale);
 		
-	}
-	
-	public void recordCashFlow(String transactionId, String recordedBy, String flowType, double amount, String note) {
-
-	    if (getTransactionById(transactionId) != null) {
-	        throw new IllegalArgumentException("Transaction already exists.");
-	    }
-
-	    CashFlowTransaction flow = new CashFlowTransaction(transactionId, recordedBy, flowType, amount, note);
-
-	    if (flowType.equals("Cash In")) {
-	        wallet.cashIn(amount);
-	    } else {
-	        wallet.cashOut(amount);
-	    }
-	    
-	    transactions.add(flow);
+		
 	}
 	
 	public void voidTransaction(String transactionId) {
@@ -96,6 +80,18 @@ public class TransactionHandler {
 			}
 		}
 		return null;
+	}
+	
+	// Gets only sales.
+	public ArrayList<SaleTransaction> getSalesByUser(String username) {
+	    ArrayList<SaleTransaction> userSales = new ArrayList<>();
+	    for (Transaction transac : transactions) {
+	        if (transac instanceof SaleTransaction 
+	        		&& transac.getRecordedBy().equals(username)) {
+	        	userSales.add((SaleTransaction) transac);
+	        }
+	    }
+	    return userSales;
 	}
 	
 	public Wallet getWallet() {
