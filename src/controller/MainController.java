@@ -126,9 +126,6 @@ public class MainController {
                     Clerk clerk = (Clerk) system.getCurrentUser();
                     dashboardController.setDashboard(new ClerkDashboard(system, clerk));
                 }
-            } else if (childController instanceof TransactionController) {
-                TransactionController transactionController = (TransactionController) childController;
-                transactionController.setSystem(system);
             } else if (childController instanceof ClerkSalesController) {
             	ClerkSalesController clerkSalesController = (ClerkSalesController) childController;
             	clerkSalesController.setSystem(system);
